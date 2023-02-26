@@ -46,15 +46,18 @@ def post(post_id):
 def new():
     if request.method == 'POST':
         title = request.form['title']
+        author = request.form['author']
         content = request.form['content']
         if not title:
             flash('标题不能为空')
+        elif not author:
+            flash('作者不能为空')
         elif not content:
             flash('内容不能为空')
         else:
             conn = get_db_conn()
             conn.execute(
-                'insert into posts (title, content) values (?, ?)', (title, content))
+                'insert into posts (title, author, content) values (?, ?, ?)', (title, author, content))
             conn.commit()
             conn.close()
             flash('发布成功')
@@ -68,16 +71,19 @@ def edit(post_id):
     post = get_post(post_id)
     if request.method == 'POST':
         title = request.form['title']
+        author = request.form['author']
         content = request.form['content']
         if not title:
             flash('标题不能为空')
+        elif not author:
+            flash('作者不能为空')
         elif not content:
             flash('内容不能为空')
         else:
             conn = get_db_conn()
             conn.execute(
-                'update posts set title = ?, created = (datetime("now", "localtime")), content = ? where id = ?',
-                (title, content, post_id))
+                'update posts set title = ?, created = (datetime("now", "localtime")), author = ?, content = ? where id = ?',
+                (title, author, content, post_id))
             conn.commit()
             conn.close()
             flash('发布成功')

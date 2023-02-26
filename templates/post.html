@@ -3,12 +3,14 @@
 {% block content %}
 
 <h3>
-    {% block title %}
-    {{post['title']}}
-    {% endblock %}
+    {% block title %}{{post['title']}}{% endblock %}
 </h3>
-<span class="badge badge-primary">{{post['created']}}</span>
+
+<span class="badge badge-primary">{{post['author']}}</span>
+<span class="badge badge-secondary">{{post['created']}}</span>
+
 <hr>
+
 {% for line in post['content'].strip('\n').split('\n') %}
 <p>{{line}}</p>
 {% endfor %}
