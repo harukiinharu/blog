@@ -10,11 +10,11 @@
 
 {% for post in posts %}
 
-<a href="{{url_for('post', post_id=post['id'])}}" style="color: rgb(34, 131, 63);">
+<a href="{{url_for('post', post_id=post['id'])}}" style="color: black;">
     <h3>{{post['title']}}</h3>
 </a>
 
-<span class="badge badge-primary">{{post['author']}}</span>
+<span class="badge badge-success">{{post['author']}}</span>
 <span class="badge badge-secondary">{{post['created']}}</span>
 
 <!-- <a href="{{ url_for('edit', post_id=post['id']) }}">
