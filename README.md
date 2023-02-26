@@ -15,18 +15,22 @@ Date 2022-02-25
 
 # 使用
 
-首先运行命令：
+首先进入根目录 blog ，并在该目录下初始化一个 sqlite3 数据库：
 
-`$ python init_db.py`
+```sh
+cd blog
+python init_db.py
+```
 
-初始化一个 sqlite3 数据库放在本地
+然后开启带有 flask 的环境并运行服务器：
 
-然后运行命令：
+```sh
+conda activate blog
+sh start.sh
+```
 
-`$ sh start.sh`
+关闭服务器可以输入：
 
-开启服务即可
-
-停止服务可以输入：
-
-`$ sh stop.sh`
+```sh
+sh stop.sh
+```
