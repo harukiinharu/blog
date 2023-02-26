@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>
+    {% block title %}
+    {{post['title']}}
+    {% endblock %}
+</h3>
+<span class="badge badge-primary">{{post['created']}}</span>
+<hr>
+{% for line in post['content'].strip('\n').split('\n') %}
+<p>{{line}}</p>
+{% endfor %}
+
+{% endblock %}
