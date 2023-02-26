@@ -16,6 +16,14 @@
 
 <span class="badge badge-primary">{{post['created']}}</span>
 
+<!-- <a href="{{ url_for('edit', post_id=post['id']) }}">
+    <span class="badge badge-warning">编辑</span>
+</a>
+
+<a href="{{ url_for('delete', post_id=post['id']) }}" onclick="return confirm('确定删除？')">
+    <span class="badge badge-danger">删除</span>
+</a> -->
+
 <hr>
 
 {% endfor %}

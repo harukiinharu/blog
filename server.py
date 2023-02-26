@@ -98,12 +98,7 @@ def delete(post_id):
 
 @app.route('/about')
 def about():
-    post = {
-        'title': '关于春木',
-        'created': '2023-02-25 17:00:00',
-        'content': '你好，我是春木\n春风绿地树先知，欢迎来到我的博客'
-    }
-    return render_template('post.html', post=post)
+    return render_template('about.html')
 
 
 if __name__ == '__main__':
