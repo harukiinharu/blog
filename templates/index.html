@@ -9,11 +9,11 @@
 {% endfor %}
 
 {% for post in posts %}
-
-<a href="{{url_for('post', post_id=post['id'])}}" style="color: black;">
-    <h3>{{post['title']}}</h3>
-</a>
-
+<div style="height: 42px;">
+    <a href="{{url_for('post', post_id=post['id'])}}" style="color: black;">
+        <h3>{{post['title']}}</h3>
+    </a>
+</div>
 <span class="badge badge-success">{{post['author']}}</span>
 <span class="badge badge-secondary">{{post['created']}}</span>
 
