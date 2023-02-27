@@ -9,11 +9,6 @@
 {% endfor %}
 
 {% for post in posts %}
-<div style="height: 42px;">
-    <a href="{{url_for('post', post_id=post['id'])}}" style="color: black;">
-        <h3>{{post['title']}}</h3>
-    </a>
-</div>
 <span class="badge badge-success">{{post['author']}}</span>
 <span class="badge badge-secondary">{{post['created']}}</span>
 
@@ -24,6 +19,10 @@
 <!-- <a href="{{ url_for('delete', post_id=post['id']) }}" onclick="return confirm('确定删除？')">
     <span class="badge badge-danger">删除</span>
 </a> -->
+
+{% for line in post['content'].strip('\n').split('\n') %}
+<p>{{line}}</p>
+{% endfor %}
 
 <hr>
 

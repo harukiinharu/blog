@@ -6,7 +6,7 @@ app.config['SECRET_KEY'] = 'harukiinharu'
 
 
 def get_db_conn():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('message.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -37,6 +37,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post:
+        print('post!')
         return render_template('post.html', post=post)
     else:
         return render_template('page_not_found.html')
@@ -45,19 +46,16 @@ def post(post_id):
 @app.route('/posts/new', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
-        title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        if not title:
-            flash('标题不能为空')
-        elif not author:
+        if not author:
             flash('作者不能为空')
         elif not content:
             flash('内容不能为空')
         else:
             conn = get_db_conn()
             conn.execute(
-                'insert into posts (title, author, content) values (?, ?, ?)', (title, author, content))
+                'insert into posts (author, content) values (?, ?)', (author, content))
             conn.commit()
             conn.close()
             flash('发布成功')
@@ -70,20 +68,17 @@ def edit(post_id):
     return render_template('page_not_found.html')
     post = get_post(post_id)
     if request.method == 'POST':
-        title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        if not title:
-            flash('标题不能为空')
-        elif not author:
+        if not author:
             flash('作者不能为空')
         elif not content:
             flash('内容不能为空')
         else:
             conn = get_db_conn()
             conn.execute(
-                'update posts set title = ?, created = (datetime("now", "localtime")), author = ?, content = ? where id = ?',
-                (title, author, content, post_id))
+                'update posts set created = (datetime("now", "localtime")), author = ?, content = ? where id = ?',
+                (author, content, post_id))
             conn.commit()
             conn.close()
             flash('发布成功')
@@ -104,16 +99,16 @@ def delete(post_id):
 
 @app.route('/about')
 def about():
-    post = {
-        'title': '关于春木树洞',
+    posts = [{
+        'id': '0',
         'author': '春木',
         'created': '2023-02-25 17:00:00',
         'content': '''
         你好，我是春木
         春风绿地树先知，欢迎来到春木树洞
         这里没有用户系统，你可以畅所欲言'''
-    }
-    return render_template('post.html', post=post)
+    }]
+    return render_template('index.html', posts=posts)
 
 
 if __name__ == '__main__':
