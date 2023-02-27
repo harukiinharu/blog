@@ -25,10 +25,10 @@ Date 2022-02-25
 python init_db.py
 ```
 
-然后开启带有 flask 的环境并运行服务器（例如这里用 conda 新建的 blog 环境）：
+然后开启带有 flask 的环境并运行服务器：
 
 ```sh
-conda activate blog
+conda activate YOUR_ENVIRONMENT
 sh start.sh
 ```
 
