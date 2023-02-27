@@ -9,16 +9,19 @@
 {% endfor %}
 
 {% for post in posts %}
-<span class="badge badge-success">{{post['author']}}</span>
-<span class="badge badge-secondary">{{post['created']}}</span>
 
-<div style="margin: 0 0 16px 0;"></div>
+<div>
+    <span class="badge badge-success">{{post['author']}}</span>
+    <span class="badge badge-secondary">{{post['created']}}</span>
 
-{% for line in post['content'].strip('\n').split('\n') %}
-<p>{{line}}</p>
-{% endfor %}
+    <div style="margin: 0 0 16px 0;"></div>
 
-<hr>
+    {% for line in post['content'].strip('\n').split('\n') %}
+    <p>{{line}}</p>
+    {% endfor %}
+
+    <hr>
+</div>
 
 {% endfor %}
 
