@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('database.db')
+conn = sqlite3.connect('blog.db')
 create_table = '''
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
