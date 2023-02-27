@@ -33,17 +33,7 @@ def index():
     return render_template('index.html', posts=posts)
 
 
-@app.route('/posts/<int:post_id>')
-def post(post_id):
-    post = get_post(post_id)
-    if post:
-        print('post!')
-        return render_template('post.html', post=post)
-    else:
-        return render_template('page_not_found.html')
-
-
-@app.route('/posts/new', methods=['GET', 'POST'])
+@app.route('/new', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
         author = request.form['author']
@@ -63,10 +53,12 @@ def new():
     return render_template('new.html')
 
 
-@app.route('/posts/<int:post_id>/edit', methods=['GET', 'POST'])
+@app.route('/<int:post_id>/edit', methods=['GET', 'POST'])
 def edit(post_id):
     return render_template('page_not_found.html')
     post = get_post(post_id)
+    if not post:
+        return render_template('page_not_found.html')
     if request.method == 'POST':
         author = request.form['author']
         content = request.form['content']
@@ -86,10 +78,13 @@ def edit(post_id):
     return render_template('edit.html', post=post)
 
 
-@app.route('/posts/<int:post_id>/delete', methods=['GET', 'POST'])
+@app.route('/<int:post_id>/delete', methods=['GET', 'POST'])
 def delete(post_id):
     return render_template('page_not_found.html')
     conn = get_db_conn()
+    post = conn.execute('select id from posts where id = ?', (post_id,)).fetchone()
+    if not post:
+        return render_template('page_not_found.html')
     conn.execute('delete from posts where id = ?', (post_id,))
     conn.commit()
     conn.close()
@@ -99,16 +94,15 @@ def delete(post_id):
 
 @app.route('/about')
 def about():
-    posts = [{
-        'id': '0',
+    post = {
         'author': '春木',
         'created': '2023-02-25 17:00:00',
         'content': '''
         你好，我是春木
         春风绿地树先知，欢迎来到春木树洞
         这里没有用户系统，你可以畅所欲言'''
-    }]
-    return render_template('index.html', posts=posts)
+    }
+    return render_template('about.html', post=post)
 
 
 if __name__ == '__main__':

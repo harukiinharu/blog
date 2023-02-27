@@ -4,11 +4,6 @@
 
 {% block content %}
 
-{% for message in get_flashed_messages() %}
-<div class="alert alert-success" style="text-align: center;">{{message}}</div>
-{% endfor %}
-
-{% for post in posts %}
 <span class="badge badge-success">{{post['author']}}</span>
 <span class="badge badge-secondary">{{post['created']}}</span>
 
@@ -19,7 +14,5 @@
 {% endfor %}
 
 <hr>
-
-{% endfor %}
 
 {% endblock %}
