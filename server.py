@@ -33,7 +33,7 @@ def index():
     return render_template('index.html', posts=posts)
 
 
-@app.route('/posts/<int:post_id>')
+@app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
     if post:
@@ -42,7 +42,7 @@ def post(post_id):
         return render_template('page_not_found.html')
 
 
-@app.route('/posts/new', methods=['GET', 'POST'])
+@app.route('/new', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
         title = request.form['title']
@@ -65,10 +65,12 @@ def new():
     return render_template('new.html')
 
 
-@app.route('/posts/<int:post_id>/edit', methods=['GET', 'POST'])
+@app.route('/<int:post_id>/edit', methods=['GET', 'POST'])
 def edit(post_id):
     return render_template('page_not_found.html')
     post = get_post(post_id)
+    if not post:
+        return render_template('page_not_found.html')
     if request.method == 'POST':
         title = request.form['title']
         author = request.form['author']
@@ -91,9 +93,12 @@ def edit(post_id):
     return render_template('edit.html', post=post)
 
 
-@app.route('/posts/<int:post_id>/delete', methods=['GET', 'POST'])
+@app.route('/<int:post_id>/delete', methods=['GET', 'POST'])
 def delete(post_id):
     return render_template('page_not_found.html')
+    post = get_post(post_id)
+    if not post:
+        return render_template('page_not_found.html')
     conn = get_db_conn()
     conn.execute('delete from posts where id = ?', (post_id,))
     conn.commit()
