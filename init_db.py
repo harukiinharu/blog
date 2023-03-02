@@ -1,6 +1,8 @@
 import sqlite3
+from os.path import dirname
+localPath = dirname(__file__)
 
-conn = sqlite3.connect('blog.db')
+conn = sqlite3.connect(f'{localPath}/blog.db')
 create_table = '''
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
