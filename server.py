@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 import sqlite3
+from os.path import dirname
 
+localPath = dirname(__file__)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'harukiinharu'
 
 
 def get_db_conn():
-    conn = sqlite3.connect('message.db')
+    conn = sqlite3.connect(f'{localPath}/message.db')
     conn.row_factory = sqlite3.Row
     return conn
 

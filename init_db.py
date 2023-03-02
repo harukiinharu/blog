@@ -1,6 +1,8 @@
 import sqlite3
+from os.path import dirname
 
-conn = sqlite3.connect('message.db')
+localPath = dirname(__file__)
+conn = sqlite3.connect(f'{localPath}/message.db')
 create_table = '''
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (

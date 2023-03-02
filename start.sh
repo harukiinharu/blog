@@ -1,4 +1,4 @@
-serverPath=$( cd "$( dirname "${BASH_SOURCE[0]}")" && pwd )
+serverPath=$(cd $(dirname $0); pwd)
 
 if [ ! -f $serverPath/server.pid ];
 then
