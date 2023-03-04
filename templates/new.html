@@ -10,15 +10,19 @@
 
 <form method="post">
     <div class="form-group">
-        <label for="author">作者</label>
-        <input type="text" name="author" placeholder="" class="form-control"
-            value="{{ request.form['author'] }}"></input>
+        <label class="new-label">
+            <input type="text" name="author" placeholder="作者" class="form-control no-border-padding"
+                style="box-shadow: none" value="{{ request.form['author'] }}"></input>
+        </label>
     </div>
 
     <div class="form-group">
-        <label for="content">内容</label>
-        <textarea name="content" placeholder="" class="form-control">{{ request.form['content'] }}</textarea>
+        <label class="new-label">
+            <textarea name="content" placeholder="内容" class="form-control no-border-padding new-textarea"
+                style="box-shadow: none">{{ request.form['content'] }}</textarea>
+        </label>
     </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-success">提交</button>
         <button class="btn btn-outline-secondary" type="button" onclick="javascript:history.back(-1);">取消</button>
