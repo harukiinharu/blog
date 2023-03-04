@@ -1,0 +1,18 @@
+.new-container{
+    max-width: 632px;
+}
+
+.new-label{
+    width: 100%;
+}
+
+.new-textarea{
+    height: 60px;
+    max-height: 200px;
+    resize: none;
+}
+
+.no-border-padding{
+    border: none;
+    padding: 0;
+}

@@ -6,12 +6,13 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}">
     <title>{% block title %} {% endblock %}</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container">
+        <div class="container new-container">
             <nav class="nav">
                 <a class="navbar-brand" href="{{ url_for('index') }}">春木树洞</a>
                 <a class="navbar-brand" href="{{ url_for('about') }}">关于</a>
@@ -22,12 +23,13 @@
         </div>
     </nav>
     <div style="margin: 0 0 16px 0;"></div>
-    <div class="container">
+    <div class="container new-container">
         {% block content %} {% endblock %}
     </div>
 
     <script src="{{url_for('static', filename='js/jquery.slim.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/myjs.js')}}"></script>
 
 </body>
 
